@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "tf_state_bucket" {
     bucket = "cloudy-ninja-terraform-state"
 
-    # lifecycle {
-    #     prevent_destroy = true
-    # }
+    lifecycle {
+        prevent_destroy = true
+    }
 
     server_side_encryption_configuration {
         rule {
@@ -14,8 +14,8 @@ resource "aws_s3_bucket" "tf_state_bucket" {
     }
 }
 
-resource "aws_s3_bucket" "photosite_bucket" {
-    bucket = var.photo_object_bucket
+resource "aws_s3_bucket" "website_bucket" {
+    bucket = var.website_object_bucket
 
     server_side_encryption_configuration {
         rule {
@@ -33,7 +33,7 @@ resource "aws_s3_bucket" "photosite_bucket" {
 
 }
 
-resource "aws_s3_bucket" "photosite_webhost_bucket" {
+resource "aws_s3_bucket" "website_webhost_bucket" {
     bucket = var.webhost_bucket
 
     server_side_encryption_configuration {

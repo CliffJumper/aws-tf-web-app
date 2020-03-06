@@ -1,9 +1,9 @@
 resource "aws_cognito_user_pool" "pool" {
-  name = "photosite-pool"
+  name = "website-pool"
 }
 
 resource "aws_cognito_user_pool_client" "client" {
-  name = "PhotositeWebClient"
+  name = "WebsiteWebClient"
 
   generate_secret = false
 

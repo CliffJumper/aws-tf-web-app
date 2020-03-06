@@ -2,7 +2,7 @@
 data "aws_caller_identity" "current" {}
 
 # Lambda-specific IAM Settings
-resource "aws_iam_role" "photosite-lambda-role" {
+resource "aws_iam_role" "website-lambda-role" {
   name = "test_role"
 
   assume_role_policy = <<EOF
@@ -22,9 +22,9 @@ resource "aws_iam_role" "photosite-lambda-role" {
 EOF
 }
 
-resource "aws_iam_role_policy" "photosite-lambda-policy" {
-    name = "photosite-lambda-policy"
-    role = aws_iam_role.photosite-lambda-role.id
+resource "aws_iam_role_policy" "website-lambda-policy" {
+    name = "website-lambda-policy"
+    role = aws_iam_role.website-lambda-role.id
 
     policy = <<-EOF
     {
@@ -35,7 +35,7 @@ resource "aws_iam_role_policy" "photosite-lambda-policy" {
             "dynamodb:PutItem"
             ],
             "Effect": "Allow",
-            "Resource": "${aws_dynamodb_table.photosite-dynamodb-table.arn}"
+            "Resource": "${aws_dynamodb_table.website-dynamodb-table.arn}"
         }
         ]
     }
@@ -43,16 +43,16 @@ resource "aws_iam_role_policy" "photosite-lambda-policy" {
 }
 
 
-resource "aws_iam_role_policy_attachment" "photosite-lambda-role-policy-attach" {
-  role       = aws_iam_role.photosite-lambda-role.name
+resource "aws_iam_role_policy_attachment" "website-lambda-role-policy-attach" {
+  role       = aws_iam_role.website-lambda-role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 # LAMBDA FUNCTION 
-resource "aws_lambda_function" "photosite_lambda" {
+resource "aws_lambda_function" "website_lambda" {
   filename      = "lambda_function_payload.zip"
   function_name = "RequestUnicorn"
-  role          = aws_iam_role.photosite-lambda-role.arn
+  role          = aws_iam_role.website-lambda-role.arn
   handler       = "exports.handler"
 
   # The filebase64sha256() function is available in Terraform 0.11.12 and later

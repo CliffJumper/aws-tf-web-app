@@ -1,4 +1,4 @@
-resource "aws_dynamodb_table" "photosite-dynamodb-table" {
+resource "aws_dynamodb_table" "website-dynamodb-table" {
     name = var.dynamodb_table
     hash_key = var.dynamo_partition_key
 
@@ -14,5 +14,5 @@ resource "aws_dynamodb_table" "photosite-dynamodb-table" {
 }
 
 output "dynamo_table_arn" {
-    value = aws_dynamodb_table.photosite-dynamodb-table.arn
+    value = aws_dynamodb_table.website-dynamodb-table.arn
 }

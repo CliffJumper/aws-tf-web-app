@@ -1,4 +1,4 @@
-var albumBucketName = "photosite-gallery-objects";
+var albumBucketName = "website-gallery-objects";
 var bucketRegion = "us-east-2";
 var IdentityPoolId = "us-east-2:e0ddb144-b975-419f-976f-ed7a7edf8348";
 

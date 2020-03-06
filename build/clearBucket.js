@@ -10,7 +10,7 @@ var options = {
   s3Client: awsS3Client,
 };
 
-let bucket = 'photosite-gallery-webhost';
+let bucket = 'website-gallery-webhost';
 let dbgLvL = 1;
 
 s3.empty(options, bucket, dbgLvL);
