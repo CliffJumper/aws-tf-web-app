@@ -52,7 +52,7 @@ resource "aws_api_gateway_deployment" "website-apigw-deployment" {
   depends_on = [aws_api_gateway_integration.website-integration]
 
   rest_api_id = aws_api_gateway_rest_api.website-apigw-rest-api.id
-  stage_name  = "prod"
+  # stage_name  = "prod"
 
 }
 resource "aws_api_gateway_stage" "website_prod_stage" {
